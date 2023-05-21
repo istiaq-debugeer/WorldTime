@@ -30,3 +30,12 @@ class Card(models.Model):
     CardTitle=models.CharField(max_length=150)
     CardBottomTitle=models.CharField(max_length=100)
     CardImage=models.ImageField(upload_to='card/')
+
+class BreakingNews(models.Model):
+     newsImage=models.ImageField(upload_to='breakingnews/')
+     newsHeader=models.CharField(max_length=100)
+     newsinfo=models.CharField(max_length=50)
+     newstitle=models.CharField(max_length=100)
+
+class video(models.Model):
+    youtube=models.CharField()
