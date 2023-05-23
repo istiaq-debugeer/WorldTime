@@ -38,4 +38,8 @@ class BreakingNews(models.Model):
      newstitle=models.CharField(max_length=100)
 
 class video(models.Model):
-    youtube=models.CharField()
+    VideoImage=models.ImageField(upload_to='video/')
+    videoTitle=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.videoTitle
