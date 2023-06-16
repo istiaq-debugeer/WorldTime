@@ -31,15 +31,36 @@ class Card(models.Model):
     CardBottomTitle=models.CharField(max_length=100)
     CardImage=models.ImageField(upload_to='card/')
 
+
+class Tag(models.Model):
+    name=models.CharField(max_length=100)
+
+
 class BreakingNews(models.Model):
      newsImage=models.ImageField(upload_to='breakingnews/')
      newsHeader=models.CharField(max_length=100)
      newsinfo=models.CharField(max_length=50)
      newstitle=models.CharField(max_length=100)
-
+     tags=models.ManyToManyField(Tag)
 class video(models.Model):
     VideoImage=models.ImageField(upload_to='video/')
     videoTitle=models.CharField(max_length=100)
 
     def __str__(self):
         return self.videoTitle
+
+class Article(models.Model):
+    categorr=models.ForeignKey(Category,on_delete=models.CASCADE)
+    title=models.CharField(max_length=100)
+    image=models.ImageField(upload_to='articles/')
+    timestamp=models.DateTimeField(auto_now=True)
+    description=models.TextField()
+    author_image=models.ImageField(upload_to='article/')
+    author_name=models.CharField(max_length=100)
+    is_draft=models.BooleanField()
+
+
+    @property
+    def get_short_desc(self):
+        return self.description[10:100]
+

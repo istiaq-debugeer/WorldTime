@@ -1,8 +1,8 @@
 from django.shortcuts import render
+from django.views import View
 from django.views.generic import TemplateView
 
 from website.models import Category,FlashNews,Slider,Card,BreakingNews,video
-
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -17,6 +17,14 @@ class HomeView(TemplateView):
         context['cards']=Card.objects.all()
         context['breakingnews']=BreakingNews.objects.all()
         context['videos']=video.objects.all()
+        # context['articles']=Article.objects.filter(is_draft=False)
 
         return context
+class ArticleDetailView(View):
+        def get(self,request,article_id):
+            article=BreakingNews.objects.get(id=article_id)
+            context={
+                'article':article
+            }
+            return render(request,'article-details.html',context=context)
 

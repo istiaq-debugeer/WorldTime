@@ -96,6 +96,7 @@
                 <div class="card">
                   <div class="card-body">
                   {% for x in breakingnews %}
+                      <a href="{%  url 'article-details' x.id %}">
                         <div class="row">
                           <div class="col-sm-4 grid-margin">
                             <div class="position-relative">
@@ -125,6 +126,7 @@
                             </p>
                           </div>
                         </div>
+                      </a>
                   {% endfor %}
                   </div>
                 </div>
